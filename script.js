@@ -11,7 +11,7 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
 	payload.append('source', 'ttsmp3');
 
 	try {
-		const response = await fetch('https://jpd123.onrender.com/tts', {
+		const response = await fetch('https://jpd123.onrender.com/api/tts', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded',
