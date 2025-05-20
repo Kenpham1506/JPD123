@@ -8,10 +8,10 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
 	const payload = new URLSearchParams();
 	payload.append('msg', modifiedText);
 	payload.append('lang', 'Takumi');
-	payload.append('source', 'kenpham1506.github.io');
+	payload.append('source', 'ttsmp3');
 
 	try {
-		const response = await fetch('https://ttsmp3.com/makemp3_new.php', {
+		const response = await fetch('https://cors-anywhere.herokuapp.com/https://ttsmp3.com/makemp3_new.php', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded',
