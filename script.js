@@ -25,8 +25,9 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
 		console.log("TTS API response:", result);
 
 		if ((result.success || result.URL) && result.URL) {
+			const proxiedURL = `https://jpd123.onrender.com/api/stream?url=${encodeURIComponent(result.URL)}`;
 			const audio = document.getElementById('audio');
-			audio.src = result.URL;
+			audio.src = proxiedURL;
 			audio.load();
 
 			console.log("Calling audio.play()");
