@@ -8,7 +8,7 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
 	const payload = new URLSearchParams();
 	payload.append('msg', modifiedText);
 	payload.append('lang', 'Takumi');
-	payload.append('source', 'ttsmp3');
+	payload.append('source', 'kenpham1506.github.io');
 
 	try {
 		const response = await fetch('https://ttsmp3.com/makemp3_new.php', {
