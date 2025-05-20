@@ -1,6 +1,8 @@
 document.getElementById('generateBtn').addEventListener('click', async () => {
 	const inputText = document.getElementById('inputText').value;
-	const modifiedText = inputText.replace(/\[speaker:Takumi\]/g, '[speaker:Takumi]')
+
+	const modifiedText = inputText
+		.replace(/\[speaker:Takumi\]/g, '[speaker:Takumi]')
 		.replace(/\[speaker:Mizuki\]/g, '[speaker:Mizuki]')
 		.replace(/\[speaker:Takumi\][\s\S]*?(?=\[speaker:Mizuki\]|$)/g, match => match.trim() + '  <break time="10s"/>')
 		.replace(/\[speaker:Mizuki\][\s\S]*?(?=\[speaker:Takumi\]|$)/g, match => match.trim());
@@ -20,14 +22,27 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
 		});
 
 		const result = await response.json();
-		if (result.success && result.URL) {
-			document.getElementById('audio').src = result.URL;
+		console.log("TTS API response:", result);
+
+		if ((result.success || result.URL) && result.URL) {
+			const audio = document.getElementById('audio');
+			audio.src = result.URL;
+			audio.load();
+
+			console.log("Calling audio.play()");
+			try {
+				await audio.play();
+				console.log("Playback started");
+			} catch (err) {
+				console.warn("Autoplay blocked:", err.message);
+			}
+
 			document.getElementById('audioPlayer').style.display = 'block';
 		} else {
 			alert('Failed to generate audio. Please try again.');
 		}
 	} catch (error) {
-		console.error(error);
+		console.error("Fetch error:", error);
 		alert('An error occurred while generating the audio.');
 	}
 });
