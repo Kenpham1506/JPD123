@@ -11,7 +11,7 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
 	payload.append('source', 'ttsmp3');
 
 	try {
-		const response = await fetch('https://cors-anywhere.herokuapp.com/https://ttsmp3.com/makemp3_new.php', {
+		const response = await fetch('https://jpd123.onrender.com/tts', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded',
