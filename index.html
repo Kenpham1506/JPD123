@@ -9,26 +9,36 @@
 <body>
 	<div class="container">
 		<h1>JPD123 Nhuvt</h1>
-		<textarea id="inputText" placeholder="Enter conversation text..."></textarea>
+		<textarea id="inputText" placeholder="Enter conversation text...">[speaker:Takumi]
+おはよう、瑞希。昨日の映画、どうだった？
+
+[speaker:Mizuki]
+おはよう、匠。すごく面白かったよ！ストーリーが感動的だった。
+
+[speaker:Takumi]
+いいなあ。僕も行きたかったけど、宿題が多くてさ…。
+
+[speaker:Mizuki]
+それは残念。でも来週また観に行く予定だよ。一緒に行く？</textarea>
+
 		<button id="generateBtn">Generate Audio</button>
+
 		<div class="player" id="audioPlayer" style="display: none;">
 			<audio id="audio" controls crossorigin="anonymous"></audio>
 		</div>
+
 		<div class="instructions">
-			<h3>Instructions:</h3>
-			<ul>
-				<li>Use tags like <code>[speaker:Takumi]</code> and <code>[speaker:Mizuki]</code> to separate dialogue lines.</li>
-				<li>Each speaker block will automatically insert a 10-second pause between turns.</li>
-				<li>Example:
-					<pre>[speaker:Takumi]
-おはよう、瑞希。昨日の映画、どうだった？
+			<h3>Usage Instructions</h3>
+			<p>Write dialogue using speaker tags like:</p>
+			<pre>[speaker:Takumi]
+こんにちは、瑞希。
+
 [speaker:Mizuki]
-おはよう、匠。すごく面白かったよ！</pre>
-				</li>
-				<li>Click "Generate Audio" to listen to the conversation.</li>
-			</ul>
+こんにちは、匠。元気？</pre>
+			<p>Click <strong>Generate Audio</strong> to convert the dialogue into a playable voice conversation.</p>
 		</div>
 	</div>
+
 	<script src="script.js"></script>
 </body>
 </html>
