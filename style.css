@@ -16,6 +16,7 @@ body {
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	width: 90%;
 	max-width: 600px;
+	box-sizing: border-box;
 }
 
 textarea {
@@ -27,6 +28,7 @@ textarea {
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	resize: vertical;
+	box-sizing: border-box;
 }
 
 button {
@@ -36,6 +38,7 @@ button {
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
+	font-size: 16px;
 }
 
 button:hover {
@@ -44,4 +47,35 @@ button:hover {
 
 .player {
 	margin-top: 20px;
+}
+
+.instructions {
+	margin-top: 30px;
+	background: #f9f9f9;
+	border-left: 4px solid #007bff;
+	padding: 15px;
+	border-radius: 8px;
+	font-size: 14px;
+	color: #333;
+}
+
+.instructions h3 {
+	margin-top: 0;
+	color: #007bff;
+}
+
+.instructions code {
+	background: #eee;
+	padding: 2px 4px;
+	border-radius: 4px;
+	font-family: monospace;
+}
+
+.instructions pre {
+	background: #f0f0f0;
+	padding: 10px;
+	border-radius: 6px;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	font-family: monospace;
 }
