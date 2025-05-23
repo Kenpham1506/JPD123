@@ -1,32 +1,36 @@
 document.getElementById('generateBtn').addEventListener('click', async () => {
 	const inputText = document.getElementById('inputText').value;
 
-	// Convert natural speaker format (e.g. "Takumi: ...") to [speaker:X] blocks
 	const lines = inputText.split(/\r?\n/);
 	let convertedText = '';
 	let currentSpeaker = '';
 
 	for (let line of lines) {
 		const trimmed = line.trim();
-		if (trimmed === '') continue;
+		if (trimmed === '') {
+			convertedText += '\n';
+			continue;
+		}
 
 		const match = trimmed.match(/^(\w+):\s*(.*)$/);
 		if (match) {
 			const speaker = match[1];
 			const dialogue = match[2];
+
+			// Only add new speaker tag if different from current
 			if (speaker !== currentSpeaker) {
 				currentSpeaker = speaker;
 				convertedText += `[speaker:${speaker}]\n`;
 			}
-			convertedText += `${dialogue}\n\n`;
+			convertedText += `${dialogue}\n\n`; // ← ensures extra space after dialogue
 		} else {
-			// If it's a continuation of the previous dialogue
+			// For non-matching lines (multiline dialog), treat as continuation
 			convertedText += `${trimmed}\n\n`;
 		}
 	}
 
 	const modifiedText = convertedText
-		.replace(/\[speaker:Takumi\][\s\S]*?(?=\[speaker:Mizuki\]|\[speaker:Takumi\]|$)/g, match => match.trim() + '  <break time="8s"/>')
+		.replace(/\[speaker:Takumi\][\s\S]*?(?=\[speaker:Mizuki\]|\[speaker:Takumi\]|$)/g, match => match.trim() + '  <break time="10s"/>')
 		.replace(/\[speaker:Mizuki\][\s\S]*?(?=\[speaker:Takumi\]|\[speaker:Mizuki\]|$)/g, match => match.trim());
 
 	const payload = new URLSearchParams();
