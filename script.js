@@ -30,7 +30,7 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
 	}
 
 	const modifiedText = convertedText
-		.replace(/\[speaker:Takumi\][\s\S]*?(?=\[speaker:Mizuki\]|\[speaker:Takumi\]|$)/g, match => match.trim() + '  <break time="10s"/>')
+		.replace(/\[speaker:Takumi\][\s\S]*?(?=\[speaker:Mizuki\]|\[speaker:Takumi\]|$)/g, match => match.trim() + ' <break time="10s"/> ')
 		.replace(/\[speaker:Mizuki\][\s\S]*?(?=\[speaker:Takumi\]|\[speaker:Mizuki\]|$)/g, match => match.trim());
 
 	const payload = new URLSearchParams();
