@@ -2,36 +2,27 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
 	const inputText = document.getElementById('inputText').value;
 
 	const lines = inputText.split(/\r?\n/);
-	let convertedText = '';
-	let currentSpeaker = '';
+	const entries = [];
 
 	for (let line of lines) {
 		const trimmed = line.trim();
-		if (trimmed === '') {
-			convertedText += '\n';
-			continue;
-		}
+		if (trimmed === '') continue;
 
 		const match = trimmed.match(/^(\w+):\s*(.*)$/);
 		if (match) {
 			const speaker = match[1];
 			const dialogue = match[2];
 
-			// Only add new speaker tag if different from current
-			if (speaker !== currentSpeaker) {
-				currentSpeaker = speaker;
-				convertedText += `[speaker:${speaker}]\n`;
+			let entry = `[speaker:${speaker}] ${dialogue}`;
+
+			if (speaker === 'Takumi') {
+				entry += ' <break time="10s"/>';
 			}
-			convertedText += `${dialogue}\n\n`; // ← ensures extra space after dialogue
-		} else {
-			// For non-matching lines (multiline dialog), treat as continuation
-			convertedText += `${trimmed}\n\n`;
+			entries.push(entry);
 		}
 	}
 
-	const modifiedText = convertedText
-		.replace(/\[speaker:Takumi\][\s\S]*?(?=\[speaker:Mizuki\]|\[speaker:Takumi\]|$)/g, match => match.trim() + ' <break time="10s"/> ')
-		.replace(/\[speaker:Mizuki\][\s\S]*?(?=\[speaker:Takumi\]|\[speaker:Mizuki\]|$)/g, match => match.trim() + ' ');
+	const modifiedText = entries.join('  '); // space between entries, not newline
 
 	const payload = new URLSearchParams();
 	payload.append('msg', modifiedText);
