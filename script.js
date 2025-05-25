@@ -16,7 +16,7 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
 			let entry = `[speaker:${speaker}] ${dialogue}`;
 
 			if (speaker === 'Takumi') {
-				entry += ' <break time="10s"/>';
+				entry += ' <break time="8s"/>';
 			}
 			entries.push(entry);
 		}
